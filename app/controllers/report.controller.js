@@ -255,7 +255,7 @@ exports.updateStatus = (req, res) => {
                                                 `report for ${job.name}`,
                                                 `${report.result.errorCount} errors. ${report.result.message}`,
                                                 fullPath
-                                            ).then();
+                                            ).then().catch();
                                         }
                                     });
                                 }
