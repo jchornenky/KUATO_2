@@ -60,7 +60,7 @@ require('./app/routes/searchQuery.routes')(app);
 
 // schedule job runs
 cron.schedule('* * * * *', () => {
-    jobService.queueAvailableJobs().then();
+    jobService.queueAvailableJobs().then().catch();
 });
 
 // create folders if not exists

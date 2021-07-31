@@ -269,7 +269,7 @@ exports.updateStatus = (req, res) => {
                             status: newStatus,
                             errorCount: report.result.errorCount
                         };
-                        job.save().then();
+                        job.save().then().catch();
                     });
             }
 

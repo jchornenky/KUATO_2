@@ -222,7 +222,7 @@ exports.delete = async (req, res) => {
 };
 
 exports.queueAvailable = (req, res) => {
-    services.job.queueAvailableJobs().then();
+    services.job.queueAvailableJobs().then().catch();
     return res.status(200).send({ message: 'ok' });
 };
 

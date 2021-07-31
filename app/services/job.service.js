@@ -130,7 +130,7 @@ module.exports = {
                             const hours = duration.asHours();
 
                             if (!job.lastRunAt || hours >= frequency) {
-                                queueService.sendToJobQueue(job.id).then();
+                                queueService.sendToJobQueue(job.id).then().catch();
                                 job.lastRunAt = moment();
                                 job.save();
                             }
@@ -140,14 +140,14 @@ module.exports = {
                             const duration = moment.duration(moment().diff(moment(job.lastRunAt)));
                             const minutes = duration.asMinutes();
                             if (!job.lastRunAt || minutes >= frequency) {
-                                queueService.sendToJobQueue(job.id).then();
+                                queueService.sendToJobQueue(job.id).then().catch();
                                 job.lastRunAt = moment();
                                 job.save();
                             }
                         }
                         else if (job.frequency === '1') {
                             // frequency 1 means it is a runOnce job, set the frequency to 0 after sending it to queue
-                            queueService.sendToJobQueue(job.id).then();
+                            queueService.sendToJobQueue(job.id).then().catch();
                             job.lastRunAt = moment();
                             job.frequency = '0';
                             job.save();
